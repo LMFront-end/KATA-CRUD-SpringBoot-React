@@ -4,14 +4,12 @@ package co.com.sofka.crudSpringBootReact.controllers;
 import co.com.sofka.crudSpringBootReact.models.Todo;
 import co.com.sofka.crudSpringBootReact.services.TodoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/task")
+@RequestMapping("api/todo")
 public class TodoController {
 
     /*
@@ -25,28 +23,38 @@ public class TodoController {
     private TodoService todoService;
 
     // mostrar todos los elementos del Todo
-    @GetMapping
+    @GetMapping("api/todo/list")
     public Iterable<Todo>list(){
         return todoService.list();
     }
 
     // bucar por id
-    public Optional<Todo> findTById(Long id){
+    @GetMapping("/id={id}")
+    public Optional<Todo> findTById(@PathVariable Long id){
         return todoService.findTById(id);
     }
 
     // crear una nueva tarea
-    public Todo save(Todo todo){
+    @PostMapping("/save")
+    public Todo save(@RequestBody Todo todo){
         return todoService.save(todo);
     }
 
+    // actualizar
+    @PutMapping("/update")
+    public Todo updateTodo(@RequestBody Todo todo){
+        return todoService.updateTodo(todo);
+    }
+
     // eliminar una tarea
+    @DeleteMapping("/delete/{id}")
     public void deleteTaskById(Long id){
         todoService.deleteTaskById(id);
     }
 
-    // obtener todo
-    public Todo get(Long id){
+    // obtener todo por id
+    @GetMapping("/id={id}")
+    public Todo get(@PathVariable("id") Long id){
         // si el id no existe nos muestra una exception
         return todoService.get(id);
     }

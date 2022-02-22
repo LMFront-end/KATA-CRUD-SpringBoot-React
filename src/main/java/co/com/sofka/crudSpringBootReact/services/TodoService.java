@@ -40,6 +40,18 @@ public class TodoService {
 
     // actualizar tarea
 
+    public Todo updateTodo(Todo todo) {
+
+        Optional<Todo> employeeData = itodoRepository.findById(todo.getId());
+
+        if(employeeData.isEmpty()){
+            throw new IllegalArgumentException("La tarea no ha sido creada");
+        }
+
+        return itodoRepository.save(todo);
+    }
+
+
 
 
 }
