@@ -28,9 +28,8 @@ public class TodoService {
         return itodoRepository.save(todo);
     }
 
-    // eliminar una tarea
-    public void deleteTask(Long id){
-        itodoRepository.delete();
+    public void deleteTaskById(Long id){
+       itodoRepository.deleteTaskById(id);
     }
 
     // obtener todo
@@ -38,6 +37,8 @@ public class TodoService {
         // si el id no existe nos muestra una exception
         return itodoRepository.findById(id).orElseThrow();
     }
+
+    // actualizar tarea
 
 
 

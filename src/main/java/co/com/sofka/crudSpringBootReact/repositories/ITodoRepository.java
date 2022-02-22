@@ -8,5 +8,5 @@ import java.util.Optional;
 public interface ITodoRepository extends CrudRepository<Todo, Long> {
 
 
-
+    void deleteTaskById(Long id);
 }
