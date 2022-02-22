@@ -29,10 +29,12 @@ public class TodoController {
     }
 
     // bucar por id
+    /*
     @GetMapping("/id={id}")
     public Optional<Todo> findTById(@PathVariable Long id){
         return todoService.findTById(id);
     }
+     */
 
     // crear una nueva tarea
     @PostMapping("/save")
